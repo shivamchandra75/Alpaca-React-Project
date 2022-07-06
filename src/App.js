@@ -1,24 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from "./logo.svg";
+import "./App.css";
+import Avatar from "./Components/avatar";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section className="App px-24 py-10 bg-[lightgray] h-screen flex flex-col items-center">
+      <h1 className="text-[4rem] font-bold text-left ">ALPACA GENERATOR</h1>
+      <Avatar />
+    </section>
   );
 }
 
