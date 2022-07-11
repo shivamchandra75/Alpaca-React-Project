@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import Button from "./Button";
 import ArraysObject from "./Arrays";
+import { toPng } from "html-to-image";
+import download from "downloadjs";
 
 function Avatar() {
   const [Background, setBackground] = useState("darkblue70");
@@ -13,6 +15,12 @@ function Avatar() {
   const [Leg, setLeg] = useState("default");
   const [Mouth, setMouth] = useState("default");
   const [arr, setArr] = useState(ArraysObject.arrHair);
+  const [isActive, setIsActive] = useState(false);
+
+  function setZindex() {
+    if (Accessories === "headphone") return 4;
+    else return 5;
+  }
 
   //Functions
   function change(arr) {
@@ -37,10 +45,20 @@ function Avatar() {
     );
   });
 
+  const downloadAlpaca = () => {
+    const alpacaArt = document.getElementById("alpaca");
+    toPng(alpacaArt).then(function (dataUrl) {
+      download(dataUrl, "My-Alpaca.png");
+    });
+  };
+
   return (
-    <div className="flex justify-center bg-[rgba(0,250,0,.2)] max-w-[80%] ">
-      <div className="max-w-[100%] bg-[rgba(0,250,0,.2)]">
-        <div className="img max-w-fit relative z-[1]">
+    <div className="flex flex-col justify-center  max-w-[90%] md:max-w-[80%] lg:flex-row">
+      <div className="alpaca-container mb-6 max-w-[100%] flex flex-col justify-center items-center lg:items-stretch">
+        <div
+          id="alpaca"
+          className="img max-w-[50%] sm:max-w-[60%] lg:max-w-[80%] relative z-[1]"
+        >
           <img
             src={`/images/backgrounds/${Background}.png`}
             className="image bg-img"
@@ -67,7 +85,7 @@ function Avatar() {
           />
           <img
             src={`/images/accessories/${Accessories}.png`}
-            className="image  absolute left-0 top-0 z-[5]"
+            className={`image absolute left-0 top-0 z-[${setZindex()}]`}
             id="stuff"
             alt="leg"
           />
@@ -97,7 +115,7 @@ function Avatar() {
           />
         </div>
 
-        <div className="btns flex justify-between max-w-[80%] mt-8">
+        <div className="two-btns flex justify-between self-stretch max-w-[100%] lg:max-w-[80%] mt-8">
           <button
             onClick={() => {
               setBackground(change(ArraysObject.arrBg));
@@ -109,47 +127,88 @@ function Avatar() {
               setMouth(change(ArraysObject.arrMouth));
               setNeck(change(ArraysObject.arrNeck));
             }}
-            className="random-btn px-16 py-4 flex justify-evenly rounded-md bg-white text-2xl"
+            className="random-btn px-[12%] py-[2%] flex justify-evenly rounded-md bg-white sm:text-lg lg:text-2xl"
           >
             Random
           </button>
-          <button className="down-btn px-16 py-4 flex justify-evenly rounded-md bg-white text-2xl">
+          <button
+            onClick={() => downloadAlpaca()}
+            className="down-btn px-[12%] py-[2%] flex justify-evenly rounded-md bg-white sm:text-lg lg:text-2xl cursor-pointer"
+          >
             Download
           </button>
         </div>
       </div>
 
-      <div className=" flex flex-col bg-[rgba(240,0,0,.2)] max-w-[50%] justify-start gap-12">
+      <div className="buttons-container flex justify-start gap-12 lg:flex-col lg:max-w-[50%]">
         <div className="upper-div">
-          <p className=" text-[2rem] font-bold text-left mb-8">
+          <p className=" text-base lg:text-2xl font-bold text-left mb-2 lg:mb-4">
             ACCESSORIZE THE ALPACA'S
           </p>
-          <div className="flex flex-wrap gap-5">
-            <Button name="Hair" setArr={setArr} array={ArraysObject.arrHair} />
-            <Button name="Ear" setArr={setArr} array={ArraysObject.arrEars} />
-            <Button name="Eyes" setArr={setArr} array={ArraysObject.arrEyes} />
+          <div className="flex flex-wrap  gap-2">
+            <Button
+              name="Hair"
+              setArr={setArr}
+              array={ArraysObject.arrHair}
+              isActive={isActive}
+              setIsActive={setIsActive}
+            />
+            <Button
+              name="Ear"
+              setArr={setArr}
+              array={ArraysObject.arrEars}
+              isActive={isActive}
+              setIsActive={setIsActive}
+            />
+            <Button
+              name="Eyes"
+              setArr={setArr}
+              array={ArraysObject.arrEyes}
+              isActive={isActive}
+              setIsActive={setIsActive}
+            />
             <Button
               name="Mouth"
               setArr={setArr}
               array={ArraysObject.arrMouth}
+              isActive={isActive}
+              setIsActive={setIsActive}
             />
-            <Button name="Neck" setArr={setArr} array={ArraysObject.arrNeck} />
-            <Button name="Leg" setArr={setArr} array={ArraysObject.arrLeg} />
+            <Button
+              name="Neck"
+              setArr={setArr}
+              array={ArraysObject.arrNeck}
+              isActive={isActive}
+              setIsActive={setIsActive}
+            />
+            <Button
+              name="Leg"
+              setArr={setArr}
+              array={ArraysObject.arrLeg}
+              isActive={isActive}
+              setIsActive={setIsActive}
+            />
             <Button
               name="Accessories"
               setArr={setArr}
               array={ArraysObject.arrStuff}
+              isActive={isActive}
+              setIsActive={setIsActive}
             />
             <Button
               name="Background"
               setArr={setArr}
               array={ArraysObject.arrBg}
+              isActive={isActive}
+              setIsActive={setIsActive}
             />
           </div>
         </div>
         <div className="lower-div">
-          <p className=" text-[2rem] font-bold text-left mb-8">STYLE</p>
-          <div className="flex flex-wrap gap-5 ">{printButtons}</div>
+          <p className=" text-base lg:text-2xl font-bold text-left mb-2 lg:mb-4">
+            STYLE
+          </p>
+          <div className="flex flex-wrap gap-2 ">{printButtons}</div>
         </div>
       </div>
     </div>

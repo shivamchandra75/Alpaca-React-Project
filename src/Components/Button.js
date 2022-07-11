@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import Avatar from "./avatar";
+import React from "react";
 import ArraysObject from "./Arrays";
 
 function Button(props) {
   function generateArr(array) {
     props.setArr(array);
-    console.log("called");
+    console.log("changed");
   }
   //https://stackoverflow.com/questions/9907419/how-to-get-a-key-in-a-javascript-object-by-its-value
   function findKeyByValue(object, value) {
@@ -20,14 +19,25 @@ function Button(props) {
     else if (key === arr[6]) props.setMouth(props.name);
     else if (key === arr[7]) props.setNeck(props.name);
   }
+  // let toggle = false;
+  const btnComponent = document.querySelector(".btn-component");
+  function toggleActiveButton(boolean) {
+    if (boolean) btnComponent.classList.toggle("active");
+    else btnComponent.classList.toggle("active");
+    boolean = !boolean;
+    props.setIsActive(boolean);
+    console.log(boolean, props.isActive);
+  }
+
 
   return (
     <button
       onClick={() => {
         if (props.array) generateArr(props.array); // so that if i don't pass array prop to a Button component it won't call the function
         if (props.value) findKeyByValue(ArraysObject, props.value);
+        toggleActiveButton(props.isActive);
       }}
-      className=" py-3 px-8 border-[1px] font-medium border-blue-900 rounded-3xl text-blue-900 hover:border-2 hover:font-normal"
+      className="btn-component text-sm py-1 px-1 rounded-xl md:py-1 md:px-4 lg:py-2 lg:px-8 border-2 font-normal md:font-semibold border-blue-900 lg:rounded-3xl text-blue-900 opacity-60 lg:hover:opacity-100 hover:border-blue-900 hover:text-blue-900"
     >
       {props.name}
     </button>

@@ -16,8 +16,8 @@ code {
     monospace;
 }
 /* This is how you add custom css in Tailwind Refer to https://tailwindcss.com/docs/adding-custom-styles */
-@layer components {
+/* @layer components {
   .image {
     max-width: 80%;
   }
-}
+} */

@@ -1,22 +1,22 @@
-export default {
+const ArraysObject = {
   arrBg: [
     "blue50",
-    "darkblue50",
-    "darkblue30",
-    "green50",
-    "grey40",
-    "red50",
-    "yellow50",
     "blue60",
-    "green60",
-    "grey70",
-    "red60",
-    "yellow60",
     "blue70",
+    "darkblue30",
+    "darkblue50",
     "darkblue70",
+    "green50",
+    "green60",
     "green70",
-    "grey80",
+    "red50",
+    "red60",
     "red70",
+    "grey40",
+    "grey70",
+    "grey80",
+    "yellow50",
+    "yellow60",
     "yellow70",
   ],
   arrStuff: ["earings", "flower", "glasses", "headphone"],
@@ -34,3 +34,5 @@ export default {
   arrMouth: ["astonished", "default", "eating", "laugh", "tongue"],
   arrNeck: ["default", "bend-backward", "bend-forward", "thick"],
 };
+
+export default ArraysObject;
