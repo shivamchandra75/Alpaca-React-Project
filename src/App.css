@@ -1,4 +1,7 @@
 @media (min-width: 300px) {
+  body {
+    background-color: rgb(211, 211, 211);
+  }
   .main-heading {
     font-family: "Rubik Marker Hatch", cursive;
     margin-bottom: 0.5rem;
